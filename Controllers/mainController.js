@@ -26,6 +26,7 @@ module.exports.indexPage = (req, res) => {
 
 module.exports.newMessage = async (req, res) => {
     const { messageUser } = req.body;
+    console.log( req.body )
     let auth = req.headers;
     if(!auth) {
         res.json({notification: "Man, you need to be logged in"});
@@ -48,4 +49,12 @@ module.exports.newMessage = async (req, res) => {
 module.exports.experiment = (req, res) => {
     console.log(req.headers);
     res.json({success: "Te amo"})
+}
+
+module.exports.getMessages = async(req, res) => {
+    let auth = req.headers;
+    const verified = jwt.verify( req.headers.auth, process.env.SECRET )
+    const messages = await Message.find( {author: verified.user} )
+    console.log(messages)
+    res.status(200).json({ messages: messages })
 }
