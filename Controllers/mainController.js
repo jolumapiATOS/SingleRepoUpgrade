@@ -4,18 +4,20 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 
-module.exports.indexPage = (req, res) => {
-    const { name, accountGitHub } = req.body;
+module.exports.indexPage = async (req, res) => {
+    const { name, password } = req.body;
+    
 
     try {
         const test = new User({ 
             _id: new mongoose.Types.ObjectId(),
             name: name,
-            accountGitHub: accountGitHub
+            password: password
          })
          const token = jwt.sign({user: test._id}, process.env.SECRET, {
              expiresIn: "10h"
          });
+        await User.hash(test, password);
         test.save().then( user => { console.log(user) });
     res.json({user: test, jwt: token})
     } catch (error) {
@@ -48,7 +50,7 @@ module.exports.newMessage = async (req, res) => {
 
 module.exports.experiment = (req, res) => {
     console.log(req.headers);
-    res.json({success: "Te amo"})
+    res.json({success: "App successfully running"})
 }
 
 module.exports.getMessages = async(req, res) => {
@@ -57,4 +59,24 @@ module.exports.getMessages = async(req, res) => {
     const messages = await Message.find( {author: verified.user} )
     console.log(messages)
     res.status(200).json({ messages: messages })
+}
+
+module.exports.login = async (req, res) => {
+    const { name, password } = req.body;
+    try {
+        const users = await User.find({name: name});
+        const user = users.pop();
+        if(!user) {
+            res.json({ notification: "User not found" })    
+        }
+        const verified = await User.verify(user, password);
+        if(verified){
+            const token = jwt.sign({user: user._id}, process.env.SECRET, { expiresIn: "10h" })
+            res.json({ notification: "User authenticated", jwt: token  })
+        } else {
+            res.json({ notification: "User not found" })
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
