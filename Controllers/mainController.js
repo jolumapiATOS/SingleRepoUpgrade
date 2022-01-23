@@ -57,8 +57,9 @@ module.exports.getMessages = async(req, res) => {
     let auth = req.headers;
     const verified = jwt.verify( req.headers.auth, process.env.SECRET )
     const messages = await Message.find( {author: verified.user} )
-    console.log(messages)
-    res.status(200).json({ messages: messages })
+    const reverse = messages.reverse()
+    console.log(reverse)
+    res.status(200).json({ messages: reverse })
 }
 
 module.exports.login = async (req, res) => {

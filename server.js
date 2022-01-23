@@ -16,7 +16,7 @@ mongoDB.connect('mongodb+srv://jolumapi92:'+ process.env.TOP + '@cluster0.ukcjm.
     if(err) {
         console.log(err);
     } else {
-        console.log(db, "Connected to the data base");
+        console.log("Connected to the data base");
         mongoose.connect('mongodb+srv://jolumapi92:'+ process.env.TOP + '@cluster0.ukcjm.mongodb.net/UPgrade?retryWrites=true&w=majority', function(error) {
             if(error) {
                 console.log(error)
@@ -30,9 +30,11 @@ mongoDB.connect('mongodb+srv://jolumapi92:'+ process.env.TOP + '@cluster0.ukcjm.
 const mainRouter = require('./Router/main.js')
 app.use(mainRouter);
 
-app.listen( PORT, function() {
+const server = app.listen( PORT, function() {
     console.log(" Your app is up and running on port:" + PORT);
 })
+
+console.log(server)
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'))
