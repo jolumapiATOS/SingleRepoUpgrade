@@ -11,7 +11,7 @@ module.exports.indexPage = async (req, res) => {
             _id: new mongoose.Types.ObjectId(),
             name: name,
             password: password,
-            teacher: teacher,
+            teacher: (teacher) ? true : false,
             teachers: teacherID
          })
          const token = jwt.sign({user: test._id}, process.env.SECRET, {
