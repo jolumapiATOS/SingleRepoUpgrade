@@ -19,7 +19,7 @@ module.exports.indexPage = async (req, res) => {
          });
         await User.hash(test, password);
         test.save().then( user => { console.log(user) });
-    res.json({user: test, jwt: token})
+    res.json({user: test, jwt: token, teacher: (test.teacher) ? true : false })
     } catch (error) {
         console.log(error);
         res.status(404).json({notification: error})
