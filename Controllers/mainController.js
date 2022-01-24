@@ -6,14 +6,25 @@ const jwt = require('jsonwebtoken');
 
 module.exports.indexPage = async (req, res) => {
     const { name, password, teacher, teacherID } = req.body;
+    console.log( req.body );
     try {
-        const test = new User({ 
-            _id: new mongoose.Types.ObjectId(),
-            name: name,
-            password: password,
-            teacher: (teacher) ? true : false,
-            teachers: teacherID
-         })
+        let test;
+        if(teacherID !== "null") {
+            test = new User({ 
+                _id: new mongoose.Types.ObjectId(),
+                name: name,
+                password: password,
+                teacher: (teacher) ? true : false,
+                teachers: teacherID
+            })
+        } else {
+            test = new User({ 
+                _id: new mongoose.Types.ObjectId(),
+                name: name,
+                password: password,
+                teacher: (teacher) ? true : false
+            })
+        }
          const token = jwt.sign({user: test._id}, process.env.SECRET, {
              expiresIn: "10h"
          });
