@@ -10,7 +10,7 @@ module.exports.getLastAdvancements = async (req, res) => {
     }
     const userID = jwt.verify(req.headers.auth, process.env.SECRET)
     console.log(userID)
-    const users = await User.find({teachers: "61ee1392246e86a52321ea69" });
+    const users = await User.find({teachers: userID.user });
     console.log(users)
     let infos = []
     async function infoGet() {
@@ -20,7 +20,13 @@ module.exports.getLastAdvancements = async (req, res) => {
         }
         return infos
     }
-    infoGet().then( e => { res.json({i: "ready", e: e}) })
+    infoGet().then( e => {
+        console.log(e)
+        const lastmessage = e.map( userMessages => {
+            return userMessages.pop()
+        })
+        res.json(lastmessage)
+    })
 }
 
 module.exports.getAllTeachers = async (req, res) => {
