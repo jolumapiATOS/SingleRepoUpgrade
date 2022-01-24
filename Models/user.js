@@ -19,14 +19,14 @@ const UserSchema = new schema({
     versionKey: false
 })
 
-User.static('hash', async function(user, password) {
+UserSchema.static('hash', async function(user, password) {
     const salt = await bcrypt.genSalt(5);
     const hash = await bcrypt.hash( password, salt );
     user.password = hash;
     return user;
 })
 
-User.static('verify', async function(user, password) {
+UserSchema.static('verify', async function(user, password) {
     const verified = await bcrypt.compare( password, user.password );
     return verified;
 })
