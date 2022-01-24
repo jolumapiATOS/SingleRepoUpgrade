@@ -15,7 +15,7 @@ module.exports.getLastAdvancements = async (req, res) => {
     let infos = []
     async function infoGet() {
         for(let i = 0; i<users.length; i++) {
-            const res = await Message.find({ author: users[i]._id })
+            const res = await Message.find({ author: users[i]._id }).populate("author")
             infos.push(res);
         }
         return infos
