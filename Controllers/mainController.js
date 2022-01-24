@@ -73,7 +73,8 @@ module.exports.login = async (req, res) => {
         const verified = await User.verify(user, password);
         if(verified){
             const token = jwt.sign({user: user._id}, process.env.SECRET, { expiresIn: "10h" })
-            res.json({ notification: "User authenticated", jwt: token  })
+            const userFound = await User.find({ _id: user._id })
+            res.json({ notification: "User authenticated", jwt: token, teacher: (userFound.teacher) ? true : false   })
         } else {
             res.json({ notification: "User not found" })
         }
