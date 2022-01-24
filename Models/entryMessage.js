@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
+const { User, UserSchema } = require("../Models/user.js");
 
 const message = new schema({
     _id: mongoose.Schema.Types.ObjectId,
     message: String,
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
+    author: UserSchema
 },
     {
         timestamps: true,

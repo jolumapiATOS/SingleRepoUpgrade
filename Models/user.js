@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
-const User = new schema({
+const UserSchema = new schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
     password: String,
@@ -31,5 +31,5 @@ User.static('verify', async function(user, password) {
     return verified;
 })
 
-const modelUser = mongoose.model( 'User', User );
-module.exports = modelUser;
+const User = mongoose.model( 'User', UserSchema );
+module.exports = {UserSchema, User};

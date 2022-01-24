@@ -1,4 +1,4 @@
-const User = require('../Models/user');
+const {modelUser, User} = require('../Models/user');
 const Message = require('../Models/entryMessage');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
@@ -36,10 +36,11 @@ module.exports.newMessage = async (req, res) => {
     try {
         const verified = jwt.verify( req.headers.auth, process.env.SECRET );
         const userID = mongoose.Types.ObjectId(verified.user);
+        const foundUser = await User.findById(userID);
         const message = new Message({
             _id: new mongoose.Types.ObjectId(),
             message: messageUser,
-            author: userID
+            author: foundUser
         })
         message.save().then( message => { console.log(message) } )
         res.status(201).json( { notification: message })

@@ -10,7 +10,7 @@ module.exports.getLastAdvancements = async (req, res) => {
     }
     const userID = jwt.verify(req.headers.auth, process.env.SECRET)
     console.log(userID)
-    const users = await User.find({teachers: userID.user });
+    const users = await User.find({teachers: "61ee1392246e86a52321ea69" });
     console.log(users)
     let infos = []
     async function infoGet() {
