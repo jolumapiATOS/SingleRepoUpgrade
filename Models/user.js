@@ -5,7 +5,15 @@ const bcrypt = require('bcrypt');
 const User = new schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
-    password: String
+    password: String,
+    teachers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    teacher:  {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true,
     versionKey: false
