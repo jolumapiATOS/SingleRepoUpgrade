@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
-const { User, UserSchema } = require("../Models/user.js");
 
-const message = new schema({
+
+const messageSchema = new schema({
     _id: mongoose.Schema.Types.ObjectId,
     message: String,
     author: {
@@ -16,5 +16,5 @@ const message = new schema({
     }
 );
 
-const modelMessage = mongoose.model("Message", message);
-module.exports = modelMessage;
+const Message = mongoose.model("Message", messageSchema);
+module.exports = {messageSchema, Message};

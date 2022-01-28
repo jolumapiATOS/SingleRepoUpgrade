@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const { Message, messageSchema }= require('./entryMessage.js'); 
 
 const UserSchema = new schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -13,7 +14,8 @@ const UserSchema = new schema({
     teacher:  {
         type: Boolean,
         default: false
-    }
+    },
+    messages: [messageSchema]
 }, {
     timestamps: true,
     versionKey: false

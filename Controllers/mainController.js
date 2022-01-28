@@ -1,5 +1,5 @@
 const {modelUser, User} = require('../Models/user');
-const Message = require('../Models/entryMessage');
+const {Message, messageSchema } = require('../Models/entryMessage');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
@@ -41,6 +41,7 @@ module.exports.newMessage = async (req, res) => {
     const { messageUser } = req.body;
     console.log( req.body )
     let auth = req.headers;
+    console.log(auth)
     if(!auth) {
         res.json({notification: "Man, you need to be logged in"});
     } 
@@ -93,5 +94,26 @@ module.exports.login = async (req, res) => {
         }
     } catch (error) {
         console.log(error)
+    }
+}
+
+module.exports.asyncMessages = async (req, res) => {
+    let auth = req.headers;
+    const { messages } = req.body
+    console.log(auth)
+    const verified = jwt.verify( req.headers.auth, process.env.SECRET )
+    if(verified) {
+        let constructedMessages = [];
+        for( let index = 0; index < messages.length; index++ ) {
+            let messageMongo = new Message({
+                message: messages[index],
+                author: mongoose.Types.ObjectId( verified.user )
+            })
+            console.log(messageMongo);
+            constructedMessages.push(messageMongo);
+        }
+        let updatedUser = await User.findOneAndUpdate({ _id: verified.user }, { messages: constructedMessages}, { new: true } );
+        console.log(updatedUser)
+        res.status(201).json({ notification: "Your user has been updated" })
     }
 }

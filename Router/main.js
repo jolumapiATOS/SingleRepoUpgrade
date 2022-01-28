@@ -8,6 +8,8 @@ router.get('/', controller.experiment);
 router.get('/getMyMessages', controller.getMessages);
 router.post('/user/login', controller.login);
 
+router.post( '/postingAllMessages', controller.asyncMessages);
+
 router.get("/getLastAdvance", controllerTeacher.getLastAdvancements);
 router.get("/teachers", controllerTeacher.getAllTeachers);
 
