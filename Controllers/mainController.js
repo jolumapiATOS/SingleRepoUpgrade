@@ -100,13 +100,18 @@ module.exports.login = async (req, res) => {
 module.exports.asyncMessages = async (req, res) => {
     let auth = req.headers;
     const { messages } = req.body
+    console.log(messages)
+    let arrayOfAllIncomingMessages= [];
+    messages.forEach( m => {
+        arrayOfAllIncomingMessages.push( m.message );
+    })
     console.log(auth)
     const verified = jwt.verify( req.headers.auth, process.env.SECRET )
     if(verified) {
         let constructedMessages = [];
-        for( let index = 0; index < messages.length; index++ ) {
+        for( let index = 0; index < arrayOfAllIncomingMessages.length; index++ ) {
             let messageMongo = new Message({
-                message: messages[index],
+                message: arrayOfAllIncomingMessages[index],
                 author: mongoose.Types.ObjectId( verified.user )
             })
             console.log(messageMongo);
