@@ -1,0 +1,123 @@
+.App {
+  text-align: center;
+}
+
+#navbar-for-real {
+  background-color: #6610F2;
+  min-height: 10vh;
+  position: sticky;
+  top: 0px;
+}
+
+.container-main-for-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.card-for-messages {
+  margin: 40px 0px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-top: 32px solid #6610F2;
+  border-radius: 8px;
+  animation: card 1200ms ease-in-out;
+}
+
+@keyframes card {
+  0% {
+    opacity: 0.2;
+    transform: translateY(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.nav-link-for-navbar {
+  text-decoration: none;
+  color: white;
+  margin: 20px 20px;
+}
+
+.container-for-new-entry {
+  min-height: 80vh;
+}
+
+.contents-conatiner-entries {
+  min-height: 77vh;
+  padding: 3em;
+}
+
+.nav-link-for-navbar:hover , .nav-link-for-navbar:active {
+  color: white;
+  font-weight: 800;
+} 
+
+.paragraph {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+}
+
+.item-shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 20px 30px;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.navbar-brand {
+  padding: none;
+}
+
+#footer-app {
+  background-color: #6610F2;
+  font-size: 20px;
+  color: white;
+  position: sticky;
+  bottom: 0px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
