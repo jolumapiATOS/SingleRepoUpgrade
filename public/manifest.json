@@ -1,0 +1,26 @@
+{
+    "name": "Daily UPgrade",
+    "short_name": "UPgrade",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F5F5F5",
+    "theme_color": "#6C63FF",
+    "orientation": "portrait-primary",
+    "icons": [
+            {
+            "src": "/appready72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "/appready128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "/appready512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]   
+}

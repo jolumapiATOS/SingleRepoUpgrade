@@ -1,0 +1,145 @@
+.title {
+  color: #333;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.text {
+  color: #777;
+}
+.btn {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  margin: 20px auto;
+  background: #6C63FF;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.counter {
+  background-color: white;
+  border-radius: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: -40px;
+  left: 10px;
+}
+
+.counterRecent {
+  background-color: white;
+  border-radius: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 100px;
+  position: absolute;
+  top: -40px;
+  left: 10px;
+}
+
+.btnLog {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  margin: 20px auto;
+  background: #7dff49;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btnAll {
+  display: block;
+  width: 100%;
+  padding: 8px 0px;
+  margin: 2px auto;
+  background: #6C63FF;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btnOut {
+  display: block;
+  width: 100%;
+  padding: 8px 0px;
+  margin: 2px auto;
+  background: #DB2B39;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btnNew {
+  font-size: 20px;
+  display: block;
+  width: 100%;
+  padding: 20px 0px;
+  margin: 2px auto;
+  background: #0cce6b;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.paragraph {
+  position: absolute;
+  top: -35px;
+  right: 20px;
+  color: white;
+}
+
+.titleForReview {
+  animation: headTitle 1.2s ease-in-out;
+}
+
+@keyframes headTitle {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+
+.container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: 20px 0;
+  border-radius: 12px;
+  padding: 15px;
+  border-top: 50px solid #6C63FF;
+  position: relative;
+  animation: introduce 1.3s ease-in-out ;
+}
+
+@keyframes introduce {
+  0% {
+    opacity: 0.3;
+    transform: translateY(+220px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.messageDate {
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  color: white;
+}
